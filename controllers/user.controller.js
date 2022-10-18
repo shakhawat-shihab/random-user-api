@@ -24,6 +24,9 @@ exports.saveUser = (req, res, next) => {
 
 exports.updateUser = (req, res, next) => {
     const { id } = req.params;
+    if (!parseInt(id)) {
+        return res.status(400).json({ success: false, message: "invalid id" });
+    }
     const userInfo = req.body;
     const allUsers = getAllUser();
     // console.log('allUsers ', allUsers)
@@ -74,7 +77,10 @@ exports.bulkUpdateUsers = (req, res, next) => {
 
 
 exports.deleteUser = (req, res, next) => {
-    const { id } = req.params
+    const { id } = req.params;
+    if (!parseInt(id)) {
+        return res.status(400).json({ success: false, message: "invalid id" });
+    }
     const allUsers = getAllUser();
     let isDeleted = false;
     const remaininUsers = allUsers.filter(user => {
