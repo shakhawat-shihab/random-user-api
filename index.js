@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.use('/api/v1/users', userRoute);
+app.use('/api/v1/user', userRoute);
 
 
 app.get('/', (req, res) => {

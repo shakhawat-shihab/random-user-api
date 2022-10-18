@@ -1,6 +1,14 @@
 const fs = require('fs')
 const path = require('path');
 const directory = path.join('data', 'user.json')
+
+exports.getAllUser = () => {
+    const jsonData = fs.readFileSync(directory);
+    const users = JSON.parse(jsonData)
+    // console.log(users);
+    return users;
+}
+
 exports.getRandomUserService = () => {
     const jsonData = fs.readFileSync(directory);
     const users = JSON.parse(jsonData)
@@ -19,10 +27,9 @@ exports.getRandomUsersService = (query) => {
     return randomOrder;
 }
 
-const saveUserData = (data) => {
-
+exports.saveUserService = (data) => {
     const stringifyData = JSON.stringify(data)
-    fs.writeFileSync('users.json', stringifyData)
+    fs.writeFileSync(directory, stringifyData)
 }
 
 function shuffleArray(array) {
